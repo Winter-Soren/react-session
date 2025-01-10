@@ -1,6 +1,7 @@
+import { memo } from 'react'
 import { useTodo } from '../context/TodoContext'
 
-function TodoItem({ todo }) {
+const TodoItem = memo(function TodoItem({ todo }) {
   const { toggleTodo, deleteTodo } = useTodo()
 
   return (
@@ -16,6 +17,6 @@ function TodoItem({ todo }) {
       <button onClick={() => deleteTodo(todo.id)}>Delete</button>
     </div>
   )
-}
+})
 
 export default TodoItem 

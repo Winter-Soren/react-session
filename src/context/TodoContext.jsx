@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useState, useEffect, useCallback } from 'react'
 
 const TodoContext = createContext()
 
@@ -12,19 +12,19 @@ export function TodoProvider({ children }) {
         localStorage.setItem('todos', JSON.stringify(todos))
     }, [todos])
 
-    const addTodo = (text) => {
-        setTodos([...todos, { id: Date.now(), text, completed: false }])
-    }
+    const addTodo = useCallback((text) => {
+        setTodos(prev => [...prev, { id: Date.now(), text, completed: false }])
+    }, [])
 
-    const toggleTodo = (id) => {
-        setTodos(todos.map(todo =>
+    const toggleTodo = useCallback((id) => {
+        setTodos(prev => prev.map(todo =>
             todo.id === id ? { ...todo, completed: !todo.completed } : todo
         ))
-    }
+    }, [])
 
-    const deleteTodo = (id) => {
-        setTodos(todos.filter(todo => todo.id !== id))
-    }
+    const deleteTodo = useCallback((id) => {
+        setTodos(prev => prev.filter(todo => todo.id !== id))
+    }, [])
 
     return (
         <TodoContext.Provider value={{ todos, addTodo, toggleTodo, deleteTodo }}>

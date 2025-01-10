@@ -135,3 +135,32 @@ button:hover {
 .about li {
   margin: 10px 0;
 }
+
+.todo-filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.todo-filters button {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.todo-filters button.active {
+  background-color: #4CAF50;
+  color: white;
+  border-color: #4CAF50;
+}
+
+.todo-filters button:hover {
+  background-color: #e0e0e0;
+}
+
+.todo-filters button.active:hover {
+  background-color: #45a049;
+}
